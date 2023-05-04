@@ -17,6 +17,12 @@ public interface BaiduAiImageService extends SmartBaiduAiService<AipImageClassif
     AdvancedGeneralService getAdvancedGeneralService();
 
     /**
+     * 获取 logo商标服务类
+     * @return LogoService
+     */
+    LogoService getLogoService();
+
+    /**
      * 获取默认的client
      * @return AipImageClassify
      */

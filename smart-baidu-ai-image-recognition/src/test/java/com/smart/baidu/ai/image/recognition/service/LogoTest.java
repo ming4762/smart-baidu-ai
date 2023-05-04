@@ -3,9 +3,10 @@ package com.smart.baidu.ai.image.recognition.service;
 import com.google.common.collect.ImmutableList;
 import com.smart.baidu.ai.common.properties.BaiduAiAppProperties;
 import com.smart.baidu.ai.common.utils.JsonUtils;
-import com.smart.baidu.ai.image.recognition.bean.parameter.general.InputStreamAdvancedGeneralParameter;
-import com.smart.baidu.ai.image.recognition.bean.parameter.general.LocalPathAdvancedGeneralParameter;
-import com.smart.baidu.ai.image.recognition.bean.result.general.AdvancedGeneralResult;
+import com.smart.baidu.ai.image.recognition.bean.parameter.logo.InputStreamLogoAddParameter;
+import com.smart.baidu.ai.image.recognition.bean.parameter.logo.InputStreamLogoSearchParameter;
+import com.smart.baidu.ai.image.recognition.bean.result.logo.LogoAddResult;
+import com.smart.baidu.ai.image.recognition.bean.result.logo.LogoSearchResult;
 import com.smart.baidu.ai.image.recognition.service.impl.BaiduAiImageServiceImpl;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -21,11 +22,11 @@ import java.nio.file.Paths;
 
 /**
  * @author zhongming4762
- * 2023/5/4 18:11
+ * 2023/5/4
  */
-@DisplayName("通用物体和场景识别测试")
 @Slf4j
-class AdvancedGeneralTest {
+@DisplayName("logo商标识别测试")
+public class LogoTest {
 
     private static final String IMAGE_PATH = "E:\\01-联亚\\02-项目\\08-汉鼎配节管理系统\\开发资料\\产品照片\\产品照片\\角度图\\汉鼎战\\0P8A1180.JPG";
 
@@ -47,25 +48,30 @@ class AdvancedGeneralTest {
         baiduAiImageService = aiImageService;
     }
 
-    @DisplayName("本地文件测试")
+    @SneakyThrows(IOException.class)
+    @DisplayName("logo商标识别—添加")
     @Test
-    void testLocalPathAdvancedGeneral() {
-        AdvancedGeneralResult result = baiduAiImageService.getAdvancedGeneralService().advancedGeneral(
-                LocalPathAdvancedGeneralParameter.builder()
-                        .localPath(IMAGE_PATH)
-                        .build()
-        );
-        log.info(JsonUtils.toJsonString(result));
-        Assertions.assertNotNull(result);
+    void testAddLogo() {
+        try (InputStream inputStream = Files.newInputStream(Paths.get(IMAGE_PATH))) {
+            LogoAddResult result = baiduAiImageService.getLogoService().logoAdd(
+                    InputStreamLogoAddParameter.builder()
+                            .name("汉鼎")
+                            .code("handing123")
+                            .inputStream(inputStream)
+                            .build()
+            );
+            log.info(JsonUtils.toJsonString(result));
+            Assertions.assertNotNull(result);
+        }
     }
 
     @SneakyThrows(IOException.class)
-    @DisplayName("测试文件流识别")
+    @DisplayName("logo商标识别")
     @Test
-    void testInputStreamAdvancedGeneral() {
+    void testLogoSearch() {
         try (InputStream inputStream = Files.newInputStream(Paths.get(IMAGE_PATH))) {
-            AdvancedGeneralResult result = baiduAiImageService.getAdvancedGeneralService().advancedGeneral(
-                    InputStreamAdvancedGeneralParameter.builder()
+            LogoSearchResult result = baiduAiImageService.getLogoService().logoSearch(
+                    InputStreamLogoSearchParameter.builder()
                             .inputStream(inputStream)
                             .build()
             );

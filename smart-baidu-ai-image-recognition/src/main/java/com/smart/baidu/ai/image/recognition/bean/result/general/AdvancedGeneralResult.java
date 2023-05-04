@@ -1,6 +1,7 @@
 package com.smart.baidu.ai.image.recognition.bean.result.general;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
+import com.smart.baidu.ai.image.recognition.bean.result.common.BaikeInfoResult;
 import lombok.Getter;
 import lombok.Setter;
 

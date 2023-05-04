@@ -1,6 +1,6 @@
 package com.smart.baidu.ai.common.result;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -16,9 +16,12 @@ import java.io.Serializable;
 @ToString
 public class BaiduAiErrorResult implements Serializable {
 
-    @JsonProperty("error_msg")
+    @JsonAlias("log_id")
+    private Long logId;
+
+    @JsonAlias("error_msg")
     private String errorMsg;
 
-    @JsonProperty("error_code")
+    @JsonAlias("error_code")
     private Integer errorCode;
 }

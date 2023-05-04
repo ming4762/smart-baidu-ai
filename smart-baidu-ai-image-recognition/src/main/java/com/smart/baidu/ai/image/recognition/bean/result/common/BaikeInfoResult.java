@@ -1,4 +1,4 @@
-package com.smart.baidu.ai.image.recognition.bean.result.general;
+package com.smart.baidu.ai.image.recognition.bean.result.common;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Getter;
