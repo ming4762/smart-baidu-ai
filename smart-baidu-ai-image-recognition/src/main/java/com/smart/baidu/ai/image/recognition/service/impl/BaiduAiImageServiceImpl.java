@@ -7,6 +7,7 @@ import com.smart.baidu.ai.common.service.impl.BaseSmartBaiduAiServiceImpl;
 import com.smart.baidu.ai.common.utils.JsonUtils;
 import com.smart.baidu.ai.image.recognition.service.AdvancedGeneralService;
 import com.smart.baidu.ai.image.recognition.service.BaiduAiImageService;
+import com.smart.baidu.ai.image.recognition.service.DishService;
 import com.smart.baidu.ai.image.recognition.service.LogoService;
 import lombok.Getter;
 import lombok.Setter;
@@ -28,6 +29,10 @@ public class BaiduAiImageServiceImpl extends BaseSmartBaiduAiServiceImpl<AipImag
     @Getter
     @Setter
     private LogoService logoService = new LogoServiceImpl(this);
+
+    @Getter
+    @Setter
+    private DishService dishService = new DishServiceImpl(this);
 
     /**
      * 通过appid获取 client

@@ -22,6 +22,13 @@ public interface BaiduAiImageService extends SmartBaiduAiService<AipImageClassif
      */
     LogoService getLogoService();
 
+
+    /**
+     * 获取 菜品识别 服务类
+     * @return DishService
+     */
+    DishService getDishService();
+
     /**
      * 获取默认的client
      * @return AipImageClassify
